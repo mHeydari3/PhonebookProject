@@ -104,16 +104,3 @@ class db{
 
 }
 
-$dbObj = new db();
-$dbObj->setTbl("users_tbl");
-$result_of_insert = $dbObj->insertData(["name" , "lastname" , "email" , "pasword"] , ["sarah" , "latif" , "sarah".rand()."@gmail.com" , "1234"]);
-if ($result_of_insert ) {
-    echo "<br/>INSERTED SUCCESSFULLY<br/>";
-
-    $selected_row = $dbObj->selectData(["email"]);
-    echo "<pre>"; print_r($selected_row) ;  echo "</pre> <br/><br/><br/><hr/>";
-}
-
-$res = $dbObj->editData(['name' , 'lastname' , 'email' , 'pasword'] , ['hossein koskhol' , 'kos nanaehamid' , 'e' .rand() .'@e.com' ,'pass'  ] , 20);
-
-echo "<pre>"; print_r($res) ;  echo "</pre>";
