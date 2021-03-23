@@ -1,10 +1,15 @@
 <?php
+$id = $_GET['id'];
 
 include_once 'app/contactClass.php';
 $object = new contact();
+$object->setTbl('contacts_tbl');
+$result = $object->searchData('id'  , $id);
+$val = $result;
 if (isset($_POST['submit'])){
     $data = $_POST['frm'];
-    $object->add_contact($data);
+
+    $object->update_contact($data,$id);
 
 
 
@@ -19,26 +24,26 @@ if (isset($_POST['submit'])){
 <div class="col-lg-4 ">
     <section class="panel">
         <header class="panel-heading">
-            افزودن مخاطب جدید
+            ویرایش مخاطب
 
         </header>
         <div class="panel-body">
             <form role="form" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="contactName">نام مخاطب</label>
-                    <input type="text" class="form-control" id="contactName" name="frm[contactName]" placeholder="نام را وارد کنید  ">
+                    <input type="text" class="form-control" id="contactName" name="frm[contactName]" placeholder="نام را وارد کنید  " value="<?php echo $val->name  ?>">
                 </div>
                 <div class="form-group">
                     <label for="contactLastName">نام خانوادگی مخاطب</label>
-                    <input type="text" class="form-control" id="contactLastName" name="frm[contactLastName]" placeholder="نام خانوادگی را وارد کنید  ">
+                    <input type="text" class="form-control" id="contactLastName" name="frm[contactLastName]" placeholder="نام خانوادگی را وارد کنید  " value="<?php echo $val->lastname;  ?>">
                 </div>
                 <div class="form-group">
                     <label for="contactAddress">آدرس مخاطب</label>
-                    <input type="text" class="form-control" id="contactAddress" name="frm[contactAddress]" placeholder="آدرس را وارد کنید  ">
+                    <input type="text" class="form-control" id="contactAddress" name="frm[contactAddress]" placeholder="آدرس را وارد کنید  " value="<?php echo $val->addr; ?>">
                 </div>
                 <div class="form-group">
                     <label for="contactTel">شماره تماس مخاطب</label>
-                    <input type="text" class="form-control" id="contactTel" name="frm[contactTel]" placeholder="شماره تماس را وارد کنید  ">
+                    <input type="text" class="form-control" id="contactTel" name="frm[contactTel]" placeholder="شماره تماس را وارد کنید  " value="<?php echo $val->tel; ?>">
                 </div>
 
 
@@ -46,7 +51,7 @@ if (isset($_POST['submit'])){
 
 
 
-                <button type="submit" class="btn btn-info" name="submit">افزودن مخاطب</button>
+                <button type="submit" class="btn btn-info" name="submit">ثبت تغییرات</button>
             </form>
 
         </div>
