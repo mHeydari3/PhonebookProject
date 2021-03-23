@@ -343,6 +343,8 @@ if (isset($_GET['logout'])){
                                 header('location:?contact=list');
                             }else if ($_GET['contact'] == "search"){
                                 include_once 'contact/search.php';
+                            }else if ($_GET['contact'] == "edit"){
+                                include_once 'contact/edit.php';
                             }
                         }
                         ?>
