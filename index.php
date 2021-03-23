@@ -1,5 +1,7 @@
 <?php
     include 'app/usersClass.php';
+    session_start();
+
     if(isset($_POST['btn'])){
         $data = $_POST['frm'];
         $object = new users();
