@@ -307,7 +307,9 @@ if (isset($_GET['logout'])){
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="dashboard.php?contact=add">افزودن</a></li>
+                        <li><a class="" href="dashboard.php?contact=add">افزودن مخاطب</a></li>
+                        <li><a class="" href="dashboard.php?contact=list">لیست مخاطبین</a></li>
+                        <li><a class="" href="dashboard.php?contact=search">جستجوی مخاطبین</a></li>
                     </ul>
                 </li>
 
@@ -325,7 +327,25 @@ if (isset($_GET['logout'])){
             <div class="row">
                 <div class="col-sm-12">
                     <section class="panel">
-
+                        <?php
+                        if(isset($_GET['contact'])){
+                            if($_GET['contact'] == 'add'){
+                                include_once 'contact/add.php';
+                            }else if ($_GET['contact'] == 'list'){
+                                include_once 'contact/list.php';
+                            }else if ($_GET['contact'] == 'delete'){
+                                include_once 'app/contactClass.php';
+                                $id=$_GET['id'];
+                                $object=new contact();
+                                $object->setTbl('contacts_tbl');
+                                $object->deleteData($id);
+                                //echo $id;
+                                header('location:?contact=list');
+                            }else if ($_GET['contact'] == "search"){
+                                include_once 'contact/search.php';
+                            }
+                        }
+                        ?>
                     </section>
                 </div>
 

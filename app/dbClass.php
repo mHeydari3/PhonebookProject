@@ -34,12 +34,14 @@ class db{
     public function selectData($name){
         if (is_array($name)){
             $names =  implode("," , $name )  ;
+            $stm = $this->pdo->prepare("SELECT $names FROM {$this->tbl}");
+        }else{
+            $stm = $this->pdo->prepare("SELECT {$name} FROM {$this->tbl}");
         }
-        $stm = $this->pdo->prepare("SELECT $names FROM {$this->tbl}");
+
         $stm->execute();
         $row = $stm->fetchAll(PDO::FETCH_OBJ);
         return $row;
-
     }
 
     public function insertData($fields,$data){
@@ -77,7 +79,7 @@ class db{
         return $results;
     }
     public function likeData($name,$value){
-        $sql=$this->pdo->prepare("SELECT * FROM {$this->tbl} WHERE $name LIKE '$value'");
+        $sql=$this->pdo->prepare("SELECT * FROM {$this->tbl} WHERE $name LIKE '%$value%'");
         $sql->execute();
         $results = $sql->fetchAll(PDO::FETCH_OBJ);
         return $results;
