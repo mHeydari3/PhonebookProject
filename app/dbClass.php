@@ -72,7 +72,9 @@ class db{
     }
     public function searchData($name , $value){
         $sql = $this->pdo->prepare("SELECT * FROM {$this->tbl} WHERE $name='$value'");
-        return $sql;
+        $sql->execute();
+        $results = $sql->fetch(PDO::FETCH_OBJ);
+        return $results;
     }
     public function likeData($name,$value){
         $sql=$this->pdo->prepare("SELECT * FROM {$this->tbl} WHERE $name LIKE '$value'");
