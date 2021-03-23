@@ -7,6 +7,12 @@ class contact extends db {
         //var_dump($data);
         $this->insertData(["name" , "lastname" , "addr" , "tel"] , [$data["contactName"] , $data["contactLastName"], $data["contactAddress"]  , $data["contactTel"] ] );
     }
+    public function update_contact($data , $id){
+
+        $this->setTbl($this->tbl);
+        $this->editData(["name" , "lastname" , "addr" , "tel"] , [$data["contactName"] , $data["contactLastName"], $data["contactAddress"]  , $data["contactTel"] ]  , $id);
+
+    }
     public function list_contacts(){
         $this->setTbl($this->tbl);
         return $this->selectData("*");
