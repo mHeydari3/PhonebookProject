@@ -295,7 +295,7 @@ if (isset($_GET['logout'])){
             <!-- sidebar menu start-->
             <ul class="sidebar-menu">
                 <li class="active">
-                    <a class="" href="index.html">
+                    <a class="" href="dashboard.php">
                         <i class="icon-dashboard"></i>
                         <span>صفحه اصلی</span>
                     </a>
