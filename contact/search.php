@@ -31,7 +31,7 @@
 
 
 
-                $result = $object->list_contacts();
+                $result = $object->likeData('name' , $txt);
 
                 if ($result != NULL) :
                     foreach ($result as $val):
